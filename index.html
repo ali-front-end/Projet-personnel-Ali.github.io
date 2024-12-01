@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Lien vers le fichier CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!-- Lien vers le fichier JavaScript -->
+    <script defer src="js/main.js"></script>
+    <!-- Titre amusant -->
+    <title>Tic-Tac-Toe - Le jeu de l'humanité</title>
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <h2>C'est au tour de X!</h2>
+
+    <!-- Scoreboard section -->
+    <div id="score-board-container">
+        <h3 id="score-board">X: 0 | O: 0</h3>
+    </div>
+
+    <div class="flex-container flex-column">
+        <div class="flex-container flex-wrap" id="board">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+        </div>
+        <button id="reset-button">Réinitialiser</button>
+    </div>
+
+    <!-- Modal window -->
+    <dialog id="modal">
+       <div class="titles">
+        <h1 class="ti1">projet personnel</h1>
+        <hr>
+        <em>design web gr.2-Automne 2024</em>
+       </div>
+       <div class="semiParent">
+         <div class="corp">
+        <strong>Realise par</strong>
+        <i>Ahmed Ali El Amri</i>
+        <strong>inspiration</strong>
+        <a href=" https://github.com/annaelizabeth2019/tictactoetwo"> https://github.com/annaelizabeth2019/tictactoetwo</a>
+       </div>
+       <img src="./assets/img/megaman.png" alt="megaman" width="200px">
+       </div>
+      
+       <div class="buttons">
+         <button id="close">Fermer la fenêtre</button>
+        <button id="no-show">Ne plus afficher cette fenêtre</button>
+       </div>
+       
+    </dialog>
+</body>
+</html>
