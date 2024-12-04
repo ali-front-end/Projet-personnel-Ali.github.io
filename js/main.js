@@ -1,5 +1,4 @@
-
-/*----- constants -----*/
+/*----- constantes -----*/
 const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -11,7 +10,7 @@ const winningCombos = [
     [2, 4, 6]
 ];
 
-/*----- app's state (variables) -----*/
+/*----- état de l'application (variables) -----*/
 let board;
 let turn = 'X';
 let win;
@@ -19,7 +18,7 @@ let gameOver = false;  // Nouvelle variable pour vérifier si le jeu est termin�
 let xScore = 0;
 let oScore = 0;
 
-/*----- cached element references -----*/
+/*----- références des éléments dans le DOM -----*/
 const squares = Array.from(document.querySelectorAll('#board div'));
 const messages = document.querySelector('h2');
 const resetButton = document.getElementById('reset-button');
@@ -28,15 +27,15 @@ const closeButton = document.getElementById('close');
 const noShowButton = document.getElementById('no-show');
 const scoreBoard = document.getElementById('score-board');
 
-/*----- event listeners -----*/
+/*----- écouteurs d'événements -----*/
 document.getElementById('board').addEventListener('click', handleTurn);
 resetButton.addEventListener('click', init);
 closeButton.addEventListener('click', closeModal);
 noShowButton.addEventListener('click', disableModal);
 
-/*----- functions -----*/
+/*----- fonctions -----*/
 
-// Check for a winner or a tie
+// Vérifier s'il y a un gagnant ou un match nul
 function getWinner() {
     let winner = null;
     winningCombos.forEach(function(combo) {
@@ -47,10 +46,10 @@ function getWinner() {
     return winner ? winner : board.includes('') ? null : 'T';
 }
 
-// Handle player turns
+// Gérer les tours des joueurs
 function handleTurn(event) {
     if (gameOver) return;  // Empêcher les mouvements si le jeu est terminé
-    if (event.target.textContent !== '') return;  // Ignore if square already filled
+    if (event.target.textContent !== '') return;  // Ignorer si la case est déjà remplie
     let idx = squares.findIndex(function(square) {
         return square === event.target;
     });
@@ -58,16 +57,16 @@ function handleTurn(event) {
     turn = turn === 'X' ? 'O' : 'X';
     win = getWinner();
     if (win) {
-        gameOver = true;  // Marque la fin du jeu
+        gameOver = true;  // Marquer la fin du jeu
     }
     render();
 }
 
-// Initialize the game board
+// Initialiser le plateau de jeu
 function init() {
-    // Reset the board
+    // Réinitialiser le plateau
     board = ['', '', '', '', '', '', '', '', ''];
-    // Only update the score if there was a winner
+    // Mettre à jour le score uniquement s'il y a un gagnant
     if (win === 'X') {
         xScore++;
         localStorage.setItem('xScore', xScore);
@@ -75,27 +74,27 @@ function init() {
         oScore++;
         localStorage.setItem('oScore', oScore);
     }
-    // Reset gameOver state
+    // Réinitialiser l'état du jeu terminé
     gameOver = false;
-    win = null;  // Ensure the winner is reset
-    render(); // Re-render the game
-    resetModalState(); // Reset modal visibility state
-    showModal(); // Show the modal again
+    win = null;  // S'assurer que le gagnant est réinitialisé
+    render(); // Re-rendre le jeu
+    resetModalState(); // Réinitialiser l'état de visibilité du modal
+    showModal(); // Afficher à nouveau le modal
 }
 
-// Render the game state to the DOM
+// Afficher l'état du jeu dans le DOM
 function render() {
     board.forEach(function(mark, index) {
         squares[index].textContent = mark;
     });
     
-    // Update the score display
+    // Mettre à jour l'affichage du score
     scoreBoard.textContent = `X: ${xScore} | O: ${oScore}`;
     
     messages.textContent = win === 'T' ? `C'est une égalité !` : win ? `${win} a gagné le jeu !` : `C'est au tour de ${turn}!`;
 }
 
-// Open the modal window
+// Ouvrir la fenêtre modale
 function showModal() {
     if (localStorage.getItem('modalClosed') !== 'true') {
         modal.showModal();
@@ -103,24 +102,24 @@ function showModal() {
     }
 }
 
-// Close the modal window
+// Fermer la fenêtre modale
 function closeModal() {
     modal.close();
     document.body.style.backgroundColor = "";
 }
 
-// Disable the modal from showing again
+// Désactiver l'affichage de la modale à l'avenir
 function disableModal() {
     modal.close();
     localStorage.setItem('modalClosed', 'true');
 }
 
-// Reset modal visibility state
+// Réinitialiser l'état de visibilité du modal
 function resetModalState() {
-    localStorage.removeItem('modalClosed'); // Reset the 'modalClosed' state
+    localStorage.removeItem('modalClosed'); // Réinitialiser l'état 'modalClosed'
 }
 
-// Initialize game on page load
+// Initialiser les scores à l'ouverture de la page
 function initializeScores() {
     xScore = parseInt(localStorage.getItem('xScore')) || 0;
     oScore = parseInt(localStorage.getItem('oScore')) || 0;
