@@ -1,3 +1,5 @@
+const { Body } = require("docx");
+
 /*----- constants -----*/
 const winningCombos = [
     [0, 1, 2],
@@ -96,12 +98,14 @@ function render() {
 function showModal() {
     if (localStorage.getItem('modalClosed') !== 'true') {
         modal.showModal();
+        document.body.style.backgroundColor = "rgba(93, 188, 251, 0.5)"
     }
 }
 
 // Close the modal window
 function closeModal() {
     modal.close();
+    document.body.style.backgroundColor=""
 }
 
 // Disable the modal from showing again
