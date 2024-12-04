@@ -94,18 +94,22 @@ function render() {
 function showModal() {
     if (localStorage.getItem('modalClosed') !== 'true') {
         modal.showModal();
+        document.body.style.backgroundColor = "rgba(93, 188, 251, 0.5)"
     }
 }
 
 // Ferme la fenêtre modale
 function closeModal() {
     modal.close();
+    document.body.style.backgroundColor = "white"
+
 }
 
 // Désactive définitivement l'affichage de la fenêtre modale
 function disableModal() {
     modal.close();
     localStorage.setItem('modalClosed', 'true'); // Marque comme désactivée dans le stockage local
+    document.body.style.backgroundColor = "white"
 }
 
 // Charge les scores depuis le stockage local
