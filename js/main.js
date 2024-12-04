@@ -77,7 +77,9 @@ function init() {
     }
     // Reset gameOver state
     gameOver = false;
+    win = null;  // Ensure the winner is reset
     render(); // Re-render the game
+    resetModalState(); // Reset modal visibility state
     showModal(); // Show the modal again
 }
 
@@ -97,20 +99,25 @@ function render() {
 function showModal() {
     if (localStorage.getItem('modalClosed') !== 'true') {
         modal.showModal();
-        document.body.style.backgroundColor = "rgba(93, 188, 251, 0.5)"
+        document.body.style.backgroundColor = "rgba(93, 188, 251, 0.5)";
     }
 }
 
 // Close the modal window
 function closeModal() {
     modal.close();
-    document.body.style.backgroundColor=""
+    document.body.style.backgroundColor = "";
 }
 
 // Disable the modal from showing again
 function disableModal() {
     modal.close();
     localStorage.setItem('modalClosed', 'true');
+}
+
+// Reset modal visibility state
+function resetModalState() {
+    localStorage.removeItem('modalClosed'); // Reset the 'modalClosed' state
 }
 
 // Initialize game on page load
