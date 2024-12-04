@@ -105,7 +105,7 @@ function showModal() {
 // Fermer la fenêtre modale
 function closeModal() {
     modal.close();
-    document.body.style.backgroundColor = "";
+    document.body.style.backgroundColor = "white";
 }
 
 // Désactiver l'affichage de la modale à l'avenir
